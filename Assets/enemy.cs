@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class enemy : MonoBehaviour
 {
@@ -34,8 +35,16 @@ public class enemy : MonoBehaviour
             Morir();
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        }
+    }
 
-    void Morir()
+
+        void Morir()
     {
         if (audiomuerte != null && audiomuerte.clip != null)
         {

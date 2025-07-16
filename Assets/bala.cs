@@ -4,18 +4,33 @@ using UnityEngine;
 
 public class bala : MonoBehaviour
 {
+    public float velocidad = 10f;
     public int daño = 1;
-    private void OnCollisionEnter(Collision collision)
+    public float tiempoVida = 3f;
+
+    void Start()
     {
-        if (collision.gameObject.CompareTag("Enemigo"))
+        Destroy(gameObject, tiempoVida);
+    }
+
+    void Update()
+    {
+        transform.Translate(Vector3.forward * velocidad * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemigo"))
         {
-            enemy enemigo = collision.gameObject.GetComponent<enemy>();
+            Debug.Log("La bala golpeó al enemigo");
+            enemy enemigo = other.GetComponent<enemy>();
+
             if (enemigo != null)
             {
                 enemigo.RecibirDaño(daño);
             }
-        }
 
-        Destroy(gameObject); 
+            Destroy(gameObject);
+        }
     }
 }

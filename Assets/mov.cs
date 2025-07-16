@@ -19,13 +19,13 @@ public class mov : MonoBehaviour
 
     void Update()
     {
-        // Movimiento
+       
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         Vector3 movimiento = transform.right * x + transform.forward * z;
         controller.Move(movimiento * velocidad * Time.deltaTime);
 
-        // Rotación
+       
         float mouseX = Input.GetAxis("Mouse X") * sensibilidadMouse;
         float mouseY = Input.GetAxis("Mouse Y") * sensibilidadMouse;
 
